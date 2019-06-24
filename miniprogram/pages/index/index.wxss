@@ -1,10 +1,94 @@
 /**index.wxss**/
-
+.authrize-button{
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  padding: 2rpx 8rpx;
+  background: white;
+  width: 80%;
+  display: block;
+}
 page {
   background: #f6f6f6;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+.greeting{
+  display: block;
+}
+
+.input-container{
+  margin: 8rpx 0;
+}
+
+.yes-button{
+  line-height:1.6;
+  padding: 2rpx 8rpx;
+  background: white;
+}
+.yes-button.hidden{
+  display: none;
+}
+
+.input-field{
+  display: block;
+  background: white;
+  transition: all ease-in-out 0.5s;
+  border-radius: 4px;
+  padding: 2px;
+  margin: 10rpx 0;
+}
+
+.input-field.hidden{
+  opacity: 0;
+}
+
+.input-field.show{
+  opacity: 1;
+}
+
+.msg-list{
+  position: relative;
+  width: 80%;
+  min-height: 300px;
+  margin-bottom: 10rpx;
+}
+
+.msg-list view{
+  border: none;
+  border-radius: 6px;
+}
+.msg-list view.detail{
+  max-width: calc(100% - 80rpx);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 10rpx; 
+}
+
+.msg-list view .userinfo-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+
+.msg-list .userinfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.msg-list .userinfo.is-mine{
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  background: lightgreen;
+}
+
+.msg-list .userinfo, .uploader, .tunnel{
+  height:100rpx;
+  margin-top: 20rpx;
 }
 
 .userinfo, .uploader, .tunnel {
@@ -134,4 +218,143 @@ page {
   font-size: 24rpx;
   line-height: 36rpx;
   word-break: break-all;
+}
+
+
+
+.animate span {
+	display: inline-block;
+}
+
+.animate span:nth-of-type(2) {
+	animation-delay: .1s;
+}
+.animate span:nth-of-type(3) {
+	animation-delay: .2s;
+}
+.animate span:nth-of-type(4) {
+	animation-delay: .3s;
+}
+.animate span:nth-of-type(5) {
+	animation-delay: .4s;
+}
+.animate span:nth-of-type(6) {
+	animation-delay: .5s;
+}
+.animate span:nth-of-type(7) {
+	animation-delay: .6s;
+}
+.animate span:nth-of-type(8) {
+	animation-delay: .7s;
+}
+.animate span:nth-of-type(9) {
+	animation-delay: .8s;
+}
+.animate span:nth-of-type(10) {
+	animation-delay: .95s;
+}
+.animate span:nth-of-type(11) {
+	animation-delay: 1s;
+}
+.animate span:nth-of-type(12) {
+	animation-delay: 1.1s;
+}
+.animate span:nth-of-type(13) {
+	animation-delay: 1.2s;
+}
+.animate span:nth-of-type(14) {
+	animation-delay: 1.3s;
+}
+.animate span:nth-of-type(15) {
+	animation-delay: 1.4s;
+}
+.seven span {
+	color: #616460;
+	opacity: 0;
+	transform: translate(-150px, 0) scale(.3);
+	animation: leftRight .5s forwards;
+}
+
+
+@keyframes leftRight {
+	40% {
+		transform: translate(50px, 0) scale(.7);
+		opacity: 1;
+		color: #616460;
+	}
+
+	60% {
+		color: #edeef1;
+	}
+
+	80% {
+		transform: translate(0) scale(2);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(0) scale(1);
+		opacity: 1;
+	}
+}
+
+
+@keyframes lds-eclipse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes lds-eclipse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.loading-container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.lds-eclipse div {
+  position: absolute;
+  -webkit-animation: lds-eclipse 1s linear infinite;
+  animation: lds-eclipse 1s linear infinite;
+  width: 160px;
+  height: 160px;
+  top: 30px;
+  left: calc(50% - 80px);
+  border-radius: 50%;
+  box-shadow: 0 4px 0 0 whitesmoke;
+  -webkit-transform-origin: 80px 82px;
+  transform-origin: 80px 82px;
+}
+.lds-eclipse {
+  width: 200px !important;
+  height: 200px !important;
+  -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
+
+.uploader{
+  display: none;
 }

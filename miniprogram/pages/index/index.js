@@ -1,13 +1,21 @@
 //index.js
 const app = getApp()
+const collection = 'msg';
 
 Page({
   data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    isAuthrized: false,
+    isLoading: false,
     avatarUrl: './user-unlogin.png',
+    userName: '',
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    isInput: false,
+    inputContent: '',
+    msgList: []
   },
 
   onLoad: function() {
@@ -18,55 +26,54 @@ Page({
       return
     }
 
-    // 获取用户信息
+    let that = this;
+    this.setData({ isLoading: true });
+    // 查看是否授权
     wx.getSetting({
-      success: res => {
+      success: function (res) {
         if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              this.setData({
+              that.setData({
                 avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
+                userInfo: res.userInfo,
+                userName: res.userInfo.nickName,
+                isAuthrized: true
+              });
+              that.getMessages();
+              setInterval(()=>{
+                that.getMessages(false);
+              },8000);
             }
           })
         }
+      },
+      fail:function(){
+        that.setData({ isLoading: false });
       }
-    })
+    });
   },
-
-  onGetUserInfo: function(e) {
-    if (!this.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
+  bindGetUserInfo: function (e) {
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      wx.getUserInfo({
+        success: res => {
+          this.setData({
+            avatarUrl: res.userInfo.avatarUrl,
+            userInfo: res.userInfo,
+            userName: res.userInfo.nickName,
+            isAuthrized: true
+          });
+          this.getMessages();
+        }
+      });
+      console.log(this.data.canIUse);
+    } else {
+      //用户按了拒绝按钮
+      console.log("User reject auth!");
+      console.log(this.data.canIUse);
     }
   },
-
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
-  },
-
   // 上传图片
   doUpload: function () {
     // 选择图片
@@ -116,5 +123,79 @@ Page({
       }
     })
   },
-
+  
+  handleToggleClick: function() {
+    if(this.data.isInput){
+      this.addMessage();
+    }else{
+      this.setData({
+        isInput: true
+      });
+    }
+  },
+  handleInputChange: function(e) {
+    this.setData({
+      inputContent: e.detail.value
+    })
+  },
+  addMessage: function() {
+      const msg = this.data.inputContent;
+      if(msg && msg.trim().length>0){
+        this.setData({
+          isLoading: true
+        })
+        const db = wx.cloud.database();
+        let query = wx.createSelectorQuery();
+        console.log(query.select(".input-field"));
+        db.collection(collection).add({
+          data: {
+            detail: msg,
+            avatarUrl: this.data.avatarUrl,
+            userName: this.data.userName
+          },
+          success: res => {
+            // 在返回结果中会包含新创建的记录的 _id
+            this.setData({
+              inputContent: ''
+            });
+            this.getMessages();
+          },
+          fail: err => {
+            wx.showToast({
+              icon: 'none',
+              title: '新增记录失败'
+            })
+            this.setData({
+              isLoading: false
+            })
+            console.error('[数据库] [新增记录] 失败：', err)
+          }
+        })
+      }
+  },
+  getMessages: function(setLoading = true) {
+      if(setLoading){
+        this.setData({ isLoading: true });
+      }
+      
+      const db = wx.cloud.database();
+      // 查询当前用户所有的 counters
+      db.collection(collection).where({
+        _openid: this.data.openid
+      }).get({
+        success: res => {
+          this.setData({
+            msgList: res.data.reverse(),
+            isLoading: false
+          })
+          console.log('[数据库] [查询记录] 成功: ', res)
+        },
+        fail: err => {
+          this.setData({
+            isLoading: false
+          })
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+  }
 })
