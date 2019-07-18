@@ -1,0 +1,74 @@
+/* miniprogram/pages/aiChat/aiChat.wxss */
+.ai-chat-page{
+  position: relative;
+}
+
+#ai-chat-page .float-right{
+  position: fixed;
+  right: 30rpx;
+  top: 5rpx;
+  z-index: 1;
+  font-size: 70rpx !important;
+  color:black !important;
+}
+
+.hint{
+  color: darkgray;
+  text-align: center;
+}
+
+.chat-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 85vh;
+  padding-bottom: 15vh;
+}
+
+.chat-container .chat-item{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.chat-container .chat-item.mine{
+  justify-content: flex-end;
+}
+
+.chat-container .chat-item text{
+  max-width: 80%;
+  margin: 15rpx;
+  padding: 10rpx 10rpx;
+  border-radius: 10rpx;
+  background: lightgray;
+}
+
+.chat-container .chat-item.mine text{
+  background: lightgreen;
+}
+.input-container{
+  position: fixed;
+  left:0;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0 30rpx 0;
+  border-top: 2px solid lightgray;
+  background: white;
+}
+.input-container button{
+  max-width: 40%;
+  height: 100%;
+  padding: 1rpx 40rpx 5rpx 10rpx;
+  font-size: 50rpx;
+}
+.input-container input{
+  flex-grow: 1;
+  height: 100%;
+  font-size: 46rpx;
+  padding: 10rpx 5rpx 10rpx 20rpx;
+}

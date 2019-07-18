@@ -1,3 +1,5 @@
+/* miniprogram/pages/leaveMessage/leaveMessage.wxss */
+
 /**index.wxss**/
 
 /* page{
@@ -12,7 +14,22 @@
 .leave-message-disabled{
   text-align: center;
 }
+.float-right{
+  position: absolute;
+  top: 5%;
+  right: 1%;
+  display: flex;
+  flex-direction: row;
+}
 
+.float-right navigator{
+  padding-right: 20rpx;
+}
+
+.float-right text{
+  font-size: 60rpx;
+  color: steelblue;
+}
 .authrize-button{
   position: fixed;
   top: 20%;
@@ -31,29 +48,107 @@ page {
 .greeting{
   display: block;
 }
-.icon-grid{
-  position: relative;
-  width: 100%;
+
+.input-container{
+  margin: 8rpx auto;
+  width: 90%;
+}
+
+.yes-button{
+  line-height:1.6;
+  padding: 2rpx 8rpx;
+  background: white;
+}
+.yes-button.hidden{
+  display: none;
+}
+
+.input-field{
+  display: block;
+  background: white;
+  transition: all ease-in-out 0.5s;
+  border-radius: 4px;
+  padding: 2px;
+  margin: 10rpx 0;
+}
+
+.input-field.hidden{
+  opacity: 0;
+}
+
+.input-field.show{
+  opacity: 1;
+}
+
+.msg-list{
+  width: 94%;
+  flex-grow: 1;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  margin: 10rpx auto;
+  overflow-x: hidden;
+  font-size: 32rpx;
+}
+
+.msg-list .msg-userinfo-detail{
+  max-width: calc(100% - 60rpx);
+
+}
+
+.msg-list view .msg-userinfo-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.msg-list .msg-userinfo{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+  border: none;
+  border-radius: 6px;
+}
+
+.msg-list .msg{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 0 10rpx;
 }
-.icon-grid navigator{
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 60rpx;
+
+.msg-list .msg.is-mine{
+  justify-content: flex-end;
 }
-.icon-grid navigator view{
+
+.msg-list .msg .msg-userinfo{
+  overflow:hidden;
+  background: white;
+  padding: 10rpx;
+}
+
+.msg-list .msg.is-mine .msg-userinfo{
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  background: lightgreen;
+}
+
+.msg-list .msg-userinfo{
+  min-height:100rpx;
+  margin: 10rpx 0;
+}
+
+.msg-list .msg-time{
+  display: block;
+  width: 100%;
   text-align: center;
 }
-.icon-grid text{
-  font-size: 180rpx;
-  color: steelblue;
-}
-.icon-grid text.title{
-  font-size: 40rpx;
+
+.msg-list .msg-list-load-more{
+  background-color: whitesmoke;
+  border: 2px solid lightgrey; 
 }
 
 .userinfo{
@@ -98,25 +193,90 @@ page {
   border: none;
 }
 
-.footer{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  font-size: 30rpx;
-  text-align: center;
+.uploader, .tunnel {
+  height: auto;
+  padding: 0 0 0 40rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
-.float-right{
+
+.uploader-container {
+  width: 100%;
+  height: 400rpx;
+  padding: 20rpx 20rpx 20rpx 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.uploader-image {
+  width: 100%;
+  height: 360rpx;
+}
+
+.tunnel {
+  padding: 0 0 0 40rpx;
+}
+
+.tunnel-text {
+  position: relative;
+  color: #222;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tunnel-text:first-child {
+  border-top: none;
+}
+
+.tunnel-switch {
   position: absolute;
   right: 20rpx;
-  top: 5rpx;
-  font-size: 70rpx !important;
-  color:black !important;
-  z-index: 1;
+  top: -2rpx;
 }
 
+.disable {
+  color: #888;
+}
 
+.service {
+  position: fixed;
+  right: 40rpx;
+  bottom: 40rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: linear-gradient(#007aff, #0063ce);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  transition: all 300ms ease;
+}
+
+.service-button {
+  position: absolute;
+  top: 40rpx;
+}
+
+.service:active {
+  box-shadow: none;
+}
+
+.request-text {
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  word-break: break-all;
+}
 
 
 

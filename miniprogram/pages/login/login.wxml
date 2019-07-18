@@ -1,0 +1,8 @@
+<!--miniprogram/pages/login/login.wxml-->
+<view>
+  <button bindtap="wechatLogin">Wechat Login</button>
+</view>
+
+<view>
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">Check Phone Number</button>
+</view>

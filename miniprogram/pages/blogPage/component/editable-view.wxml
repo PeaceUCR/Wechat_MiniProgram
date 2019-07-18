@@ -1,0 +1,26 @@
+<!--pages/blogPage/component/editable-view.wxml-->
+
+<view wx:if="{{!isEdit && contentType !== 'upload'}}" class="{{contentType === 'text'? 'blog-title':''}}">
+  <text>{{value ? value : placeholder}}</text>
+  <text wx:if="{{isEditable}}" class="fa fa-pencil-square" bindtap="enableEditable"></text>
+</view>
+<view wx:if="{{isEdit && contentType === 'text'}}" class="editable-text-field">
+  <input type="text" value="{{value}}" bindinput="handleInputChange" focus="{{isEdit}}"></input>
+  <text wx:if="{{isEditable}}" class="fa fa-check-circle" bindtap="disableEditable"></text>
+</view>
+<view wx:if="{{isEdit && contentType === 'textarea'}}" class="editable-textarea-field">
+  <textarea value="{{value}}" bindinput="handleInputChange" focus="{{isEdit}}" maxlength="-1"></textarea>
+  <text wx:if="{{isEditable}}" class="fa fa-check-circle" bindtap="disableEditable"></text>
+</view>
+
+<view wx:if="{{contentType === 'upload'}}">
+  <view wx:if="{{isEditable}}" class="uploader-text" bindtap="doUpload">
+    <text>添加图片</text>
+  </view>
+  <view class="uploader-container" wx:if="{{imageUrls.length>0}}">
+      <view wx:for="{{imageUrls}}" wx:key="*this">
+            <image class="uploader-image" data-index="{{index}}" src="{{item}}" mode="aspectFit" bindtap="previewImg"></image>
+      </view>
+  </view>
+</view>
+

@@ -1,0 +1,15 @@
+<!--miniprogram/pages/aiChat/aiChat.wxml-->
+<view id="ai-chat-page">
+  <scroll-view class="chat-container" scroll-y>
+    <view class="hint">
+    对方是一位女性机器人,开始聊天吧～
+    </view>
+    <view wx:for="{{messages}}" wx:key="*this" class="chat-item {{item.sender === 'user'?'mine':'' }}" id="{{'chat-' + index }}">
+        <text>{{item.text}}</text>
+    </view>
+  </scroll-view>
+  <text bindtap="showModal" class="fa fa-question-circle float-right"></text>
+  <view class="input-container">
+      <input value="{{inputValue}}" bindinput="handleInputChange" bindconfirm='send'></input><button bindtap="send"><text class="fa fa-paper-plane"></text></button>
+  </view>
+</view>

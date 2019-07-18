@@ -6,14 +6,21 @@
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi"
+    "pages/openapi/openapi",
+    "pages/blogPage/blogPage",
+    "pages/blogsPage/blogsPage",
+    "pages/compress/compress",
+    "pages/login/login",
+    "pages/qrcode/qrcode",
+    "pages/aiPage/aiPage",
+    "pages/leaveMessage/leaveMessage",
+    "pages/aiChat/aiChat"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "Shared From Peace",
+    "navigationBarTitleText": "Peace&Echo",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

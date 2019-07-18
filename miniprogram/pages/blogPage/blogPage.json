@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "写点什么～",
+  "usingComponents": {
+    "editable-view": "/pages/blogPage/component/editable-view"
+  }
+}

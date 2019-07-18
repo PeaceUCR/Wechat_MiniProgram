@@ -1,0 +1,19 @@
+<!--miniprogram/pages/blogsPage/blogsPage.wxml-->
+<view class="blogs-page-container">
+  <view wx:for="{{blogsList}}" wx:key="item._id" class="blog-item" data-id="{{item._id}}" bindtap="goTo">
+      <view class="blog-item-title">
+        <text>{{item.editableComponentsList[0].value}}</text>
+      </view>
+      <view class="blog-item-info">
+        <view class="userinfo">
+          <image
+          class="userinfo-avatar"
+          style="background-image: url({{item.avatarUrl}})"></image> 
+        <text>{{item.userName}}</text>
+        </view>
+        <text class="time"><text class="fa fa-clock-o"></text>{{item.days}}</text>
+      </view>
+      <text wx:if="{{item.userName === userInfo.nickName}}" data-id="{{item._id}}" class="fa fa-pencil" catchtap="edit"></text>
+      <text wx:if="{{item.userName === userInfo.nickName}}" data-id="{{item._id}}" class="fa fa-times-circle" catchtap="delete"></text>
+  </view>
+</view>

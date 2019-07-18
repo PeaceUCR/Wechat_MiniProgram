@@ -1,0 +1,27 @@
+<!--miniprogram/pages/aiPage/aiPage.wxml-->
+<view class="ai-page">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      点击选择种类：{{array[index]}} <text class="fa fa-hand-pointer-o"></text>
+    </view>
+  </picker>
+  <view>
+    <button bindtap="doUpload">选择图片</button>
+    <!-- <view>
+      <canvas canvas-id="aiCanvasId" class="myCanvas" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;" bindtap="previewImg" data-src="{{imageSrc}}"></canvas>
+    </view> -->
+    <view class="image-container">
+      <image src="{{imageSrc}}" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;" mode="aspectFit" bindtap="previewImg"></image>
+    </view>
+  </view>
+  <text bindtap="showModal" class="fa fa-question-circle float-right"></text>
+  <view wx:if="{{result || originalTagList.length>0}}" class="results">
+    <view class="result">识别结果:</view>
+    <view class="result">{{result}}</view>
+    <view class="details">
+      <view wx:for="{{originalTagList}}" wx:key="*this">
+        <text class="fa fa-circle"></text><text>{{item.tag_name}} : </text><text>置信度{{item.tag_confidence}}</text>
+      </view>
+    </view>
+  </view>
+</view>

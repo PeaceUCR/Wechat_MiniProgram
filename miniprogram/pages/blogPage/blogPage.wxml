@@ -1,0 +1,29 @@
+<!--pages/blogPage/blogPage.wxml-->
+<view class="blog-page-container">
+  <view class="editable-container">
+      <view wx:for="{{editableComponentsList}}" wx:key="{{index + item.type}}" class="editable-view-warpper">
+          <editable-view placeholder="{{item.placeholder}}" content-type = "{{item.type}}" class="editable-view" is-editable="{{isEdit}}" init-value="{{item.type ==='upload' ? item.images : item.value}}"/>
+          <text wx:if="{{isEdit}}" data-index="{{index}}" class="fa fa-window-close" bindtap="delete"></text>
+      </view>
+  </view>
+  <view wx:if="{{!isEdit}}" class="footer">
+    <view><image
+          class="userinfo-avatar"
+          style="background-image: url({{avatarUrl}})"></image> <text>{{userName}}</text></view>
+    <view><text>{{date}}</text></view>
+  </view>
+  <view wx:if="{{isEdit}}" class="float-button-container" >
+      <view wx:if="{{showOptions}}" class="options">
+        <button bindtap="addTextContent">文字</button>
+        <button bindtap="addUploadContent">图片</button>
+      </view>
+      <button class="add-button button" bindtap="toggleOptions">
+        <text class="fa fa-plus-square"></text>
+        <text>添加</text>
+      </button>
+      <button class="save-button button" bindtap="save">
+        <text class="fa fa-floppy-o"></text>
+        <text>保存</text>
+      </button>
+  </view>
+</view>

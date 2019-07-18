@@ -1,0 +1,21 @@
+<!--miniprogram/pages/compress/compress.wxml-->
+<view class="compress-container">
+  <view  class="title" bindtap="doCompress">
+    <text>添加要压缩的图片</text>
+  </view>
+  <image data-src="{{originalPath}}" src="{{originalPath}}" mode="aspectFit" bindtap="previewImg" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"></image>
+  <view wx:if="{{originalPath}}">
+    <view>Original Image width: {{originalWidth}}px</view>
+    <view>Original Image height: {{originalHeight}}px</view>
+    <view>Original Image size: {{originalSize}}KB</view>
+  </view>
+<canvas canvas-id="canvasId" class="myCanvas" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;" bindtap="previewImg" data-src="{{canvasPath}}"></canvas>
+  <view wx:if="{{canvasPath}}">
+    <view>Canvas Image width: {{canvasWidth}}px</view>
+    <view>Canvas Image height: {{canvasHeight}}px</view>
+    <view class="{{canvasSize<originalSize ? 'success': ''}}">Canvas Image size: {{canvasSize}}KB</view>
+  </view>
+  <view wx:if="{{canvasPath}}">
+    <button bindtap="download">Download Compressed Image</button>
+  </view>
+</view>

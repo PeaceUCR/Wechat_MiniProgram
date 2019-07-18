@@ -1,0 +1,21 @@
+<!--miniprogram/pages/qrcode/qrcode.wxml-->
+<view class="section">
+  <view>
+    <button bindtap="scanCode">扫码</button>
+  </view>
+  <view wx:if="{{scanResult}}">
+    <view>扫码结果</view>
+    <view class="scan-result">{{scanResult}}<text class="fa fa-files-o" bindtap="copy"></text></view>
+  </view>
+  </view>
+<view class="section">
+  <text bindtap="showModal" class="fa fa-question-circle float-right"></text>
+  <button bindtap="drawCode" >自定义生成二维码</button>
+  <view class="input-container" >
+    <input placeholder="自定义二维码的内容" value="{{inputValue}}" bindconfirm="drawCode" bindinput="handleInputChange" />
+  </view>
+  <view class="canvas-container">
+    <canvas style="width: 200px; height: 200px;" canvas-id="qrcode" bindtap="preview"></canvas>
+    <text wx:if="{{showDownload}}" class="fa fa-download download-icon" bindtap="download"></text>
+  </view>
+</view>

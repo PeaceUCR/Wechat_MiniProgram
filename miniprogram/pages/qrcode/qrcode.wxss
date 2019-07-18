@@ -1,0 +1,48 @@
+/* miniprogram/pages/qrcode/qrcode.wxss */
+
+.section{
+  padding: 10rpx 20rpx 60rpx 20rpx;
+}
+
+.section .float-right{
+  position: fixed;
+  right: 30rpx;
+  top: 400rpx;
+  z-index: 1;
+  font-size: 70rpx !important;
+  color:black !important;
+}
+
+.input-container input{
+  margin: 40rpx 0;
+  font-size: 40rpx;
+  border-bottom: 2px solid gray
+}
+
+.scan-result{
+  font-size: 50rpx;
+  font-weight: bold;
+  overflow-wrap:break-word;
+}
+.scan-result text{
+  margin-left: 30rpx;
+  color:green;
+}
+
+button {
+  border: 2px solid lightgrey;
+  border-radius: 10rpx;
+}
+
+.canvas-container {
+  position: relative;
+}
+
+.download-icon{
+  z-index: 1;
+  position: absolute;
+  bottom: 0rpx;
+  right: 40rpx;
+  color: green;
+  font-size: 60rpx;
+}

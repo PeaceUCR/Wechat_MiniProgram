@@ -1,0 +1,28 @@
+<!--miniprogram/pages/leaveMessage/leaveMessage.wxml-->
+<view>
+    <view wx:if="{{leaveMessage}}" class="input-container">
+    <button class="yes-button" bindtap='handleToggleClick'>{{isInput ? '点我添加留言':'点我留言'}}</button>
+    <input class="input-field {{isInput ? 'show':'hidden'}}" bindinput="handleInputChange" value="{{inputContent}}" bindconfirm='handleToggleClick'></input>
+  </view>
+  <view wx:if="{{!leaveMessage}}" class="leave-message-disabled">
+    <view>由于审核政策原因，留言系统关闭!</view>
+  </view>
+  <view class="msg-list">
+    <view class="loading-container" wx:if="{{isLoading}}">
+        <div class="lds-css ng-scope"><div style="width:100%;height:100%" class="lds-eclipse"><div></div></div></div>
+    </view>
+    <view wx:for="{{msgList}}" wx:key="*this" class="item">
+      <view class="msg {{item.avatarUrl === avatarUrl && item.userName === userName ? 'is-mine' : ''}}">
+          <view class="msg-userinfo ">
+            <image
+            class="msg-userinfo-avatar"
+            style="background-image: url({{item.avatarUrl}})"></image> 
+            <text class="msg-userinfo-detail">{{item.detail}}</text>
+        </view>
+      </view>
+      
+      <view class="msg-time">{{item.time}}</view>
+    </view>
+    <button wx:if="{{msgList.length>0}}" disabled="{{isLoading}}" class="msg-list-load-more" bindtap="loadMore">加载更多</button>
+  </view>
+</view>

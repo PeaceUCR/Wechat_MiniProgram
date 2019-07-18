@@ -1,0 +1,89 @@
+/* miniprogram/pages/aiPage/aiPage.wxss */
+.ai-page button{
+  font-size: 50rpx;
+}
+.ai-page .float-right{
+  position: fixed;
+  right: 30rpx;
+  top: 200rpx;
+  z-index: 1;
+  font-size: 70rpx !important;
+  color:black !important;
+}
+
+.ai-page .picker{
+  text-align: center;
+  font-size: 50rpx;
+}
+
+.ai-page .image-container{
+  display: flex;
+  justify-content: center;
+}
+.ai-page .results{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color:white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20rpx 0 60rpx 30rpx;
+}
+
+.ai-page .results .result{
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.ai-page .results .details view{
+  opacity: 0;
+  padding-left: 20rpx;
+  color:whitesmoke;
+}
+
+.ai-page .results .details view .fa{
+  font-size: 28rpx;
+}
+
+.ai-page .results .details view:nth-child(1){
+   animation: 1s ease-out 0s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(2){
+   animation: 1s ease-out 0.2s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(3){
+   animation: 1s ease-out 0.4s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(4){
+   animation: 1s ease-out 0.6s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(5){
+   animation: 1s ease-out 0.8s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(6){
+   animation: 1s ease-out 1s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(7){
+   animation: 1s ease-out 1.2s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(8){
+   animation: 1s ease-out 1.4s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(9){
+   animation: 1s ease-out 1.6s 1 slideIn forwards;
+}
+.ai-page .results .details view:nth-child(10){
+   animation: 1s ease-out 1.8s 1 slideIn forwards;
+}
+
+
+@keyframes slideIn {
+  0% {
+    transform:translateX(200rpx) translateY(0%);
+    opacity: 0.2;
+  }
+  100% {
+    transform:translateX(0) translateY(0%);
+    opacity: 1;
+  }
+}
